@@ -22,7 +22,7 @@ public class Main {
 
         while (true) {
             blackHole1.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole1.getMass()) / (distance * distance) * -1);
-            blackHole2.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole2.getMass()) / (distance * distance));
+            blackHole2.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole2.getMass()) / (distance * distance) * -1);
             blackHole1.setDeltaV(blackHole1.getAcceleration() * deltaT);
             blackHole2.setDeltaV(blackHole2.getAcceleration() * deltaT);
             blackHole1.setVelocity(blackHole1.getVelocity() + blackHole1.getDeltaV());
