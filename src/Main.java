@@ -15,33 +15,30 @@ public class Main {
         BlackHole blackHole1 = new BlackHole(mass1);
         BlackHole blackHole2 = new BlackHole(mass2);
 
+        int deltaT = 1;
+        int time = 0;
+        blackHole1.setVelocity(0.0);
+        blackHole2.setVelocity(0.0);
 
-//        int deltaT = 1;
-//        int time = 0;
-//        double distanceFromSun = radius;
-//        double acceleration;
-//        double velocity = 0.0;
-//        double deltaV;
-//        double deltaS;
-//
-////        ArrayList<String> results = new ArrayList<>();
-//
-//        while (true) {
-//            acceleration = -1 * (GRAVITATIONAL_CONSTANT * MASS_OF_SUN_KG) / (distanceFromSun * distanceFromSun);
-//            deltaV = acceleration * deltaT;
-//            velocity += deltaV;
-//            deltaS = velocity * deltaT;
-//            distanceFromSun += deltaS;
-//
-//            if (distanceFromSun <= 0.0) {
-//                break;
-//            }
-//
-////            results.add(String.format("Time: %ds, acceleration: %fms^-2, velocity: %fms^-1, distance: %fm", time, acceleration, velocity, distanceFromSun));
-//
-//            System.out.printf("Time: %ds, acceleration: %fms^-2, velocity: %fms^-1, distance: %fm%n", time, acceleration, velocity, distanceFromSun);
-//
-//            time += deltaT;
-//        }
+        while (true) {
+            blackHole1.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole1.getMass()) / (distance * distance) * -1);
+            blackHole2.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole2.getMass()) / (distance * distance));
+            blackHole1.setDeltaV(blackHole1.getAcceleration() * deltaT);
+            blackHole2.setDeltaV(blackHole2.getAcceleration() * deltaT);
+            blackHole1.setVelocity(blackHole1.getVelocity() + blackHole1.getDeltaV());
+            blackHole2.setVelocity(blackHole2.getVelocity() + blackHole2.getDeltaV());
+            blackHole1.setDeltaS(blackHole1.getVelocity() * deltaT);
+            blackHole2.setDeltaS(blackHole2.getVelocity() * deltaT);
+
+            distance += (blackHole1.getDeltaS() + blackHole2.getDeltaS());
+
+            if (distance <= 0.0) {
+                break;
+            }
+
+            System.out.printf("T: %ds, A1: %fms^-2, A2: %fms^-2, V1: %fms^-1, 2: %fms^-1, D: %fm%n", time, blackHole1.getAcceleration(), blackHole2.getAcceleration(), blackHole1.getVelocity(), blackHole2.getVelocity(), distance);
+
+            time += deltaT;
+        }
     }
 }
