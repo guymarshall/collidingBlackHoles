@@ -1,3 +1,5 @@
+package com.marshall.guy;
+
 public class BlackHole {
     private double mass;
     private double acceleration;

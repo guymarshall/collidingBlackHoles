@@ -1,7 +1,11 @@
+package com.marshall.guy;
+
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class App 
+{
+    public static void main(String[] args)
+    {
         final double GRAVITATIONAL_CONSTANT = 0.000000000066743;
         Scanner scanner = new Scanner(System.in);
 
@@ -12,6 +16,8 @@ public class Main {
         System.out.print("Enter distance between black holes (m): ");
         double distance = scanner.nextDouble();
 
+        scanner.close();
+
         BlackHole blackHole1 = new BlackHole(mass1);
         BlackHole blackHole2 = new BlackHole(mass2);
 
@@ -20,7 +26,8 @@ public class Main {
         blackHole1.setVelocity(0.0);
         blackHole2.setVelocity(0.0);
 
-        while (true) {
+        while (true)
+        {
             blackHole1.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole1.getMass()) / (distance * distance) * -1);
             blackHole2.setAcceleration((GRAVITATIONAL_CONSTANT * blackHole2.getMass()) / (distance * distance) * -1);
             blackHole1.setDeltaV(blackHole1.getAcceleration() * deltaT);
@@ -32,7 +39,8 @@ public class Main {
 
             distance += (blackHole1.getDeltaS() + blackHole2.getDeltaS());
 
-            if (distance <= 0.0) {
+            if (distance <= 0.0)
+            {
                 break;
             }
 
